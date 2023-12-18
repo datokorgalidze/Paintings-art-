@@ -7,11 +7,18 @@ const browsersync = require("browser-sync");
 const dist = "./dist/";
 // const dist = '/opt/lampp/htdocs/project-js';
 
+// gulp.task("copy-html", () => {
+//     return gulp.src("./src/index.html")
+//                 .pipe(gulp.dest(dist))
+//                 .pipe(browsersync.stream());
+// });
+
 gulp.task("copy-html", () => {
-    return gulp.src("./src/index.html")
-                .pipe(gulp.dest(dist))
-                .pipe(browsersync.stream());
+  return gulp.src("./src/index.html")
+              .pipe(gulp.dest(dist))
+              .on("end", browsersync.reload);
 });
+
 
 gulp.task("build-js", () => {
     return gulp.src("./src/js/main.js")
